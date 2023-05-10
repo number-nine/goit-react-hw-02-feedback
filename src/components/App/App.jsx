@@ -1,5 +1,9 @@
-// import { Container } from 'components/App/App.styled';
 import { Component } from 'react';
+import Statistics from 'components/Statistics';
+import FeedbackOptions from 'components/FeedbackOptions';
+import Section from 'components/Section';
+
+import { Container } from 'components/App/App.styled';
 
 class App extends Component {
   state = {
@@ -8,12 +12,7 @@ class App extends Component {
     bad: 0,
   };
 
-  static capitalize(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
-
   handleReviewCounter = e => {
-    
     e.preventDefault();
     const { name } = e.currentTarget;
     this.setState(prevState => ({
@@ -23,29 +22,18 @@ class App extends Component {
 
   render() {
     return (
-      <>
-        <h2>Please leave feedback</h2>
-        <div>
-          {Object.keys(this.state).map(element => (
-            <button
-              type="button"
-              key={element}
-              name={element}
-              onClick={this.handleReviewCounter}
-            >
-              {element}
-            </button>
-          ))}
-        </div>
-        <h2>Statistics</h2>
-        {Object.keys(this.state).map(element => (
-          <p key={element}>
-            {App.capitalize(element)}: {this.state[element]}
-          </p>
-        ))}
-        <p>Total:</p>
-        <p>Positive feedback:</p>
-      </>
+      <Container>
+        <h1> HW2-1 </h1>
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            {...this.state}
+            onLeaveFeedback={this.handleReviewCounter}
+          />
+        </Section>
+        <Section title="Statistics">
+          <Statistics {...this.state} />
+        </Section>
+      </Container>
     );
   }
 }
