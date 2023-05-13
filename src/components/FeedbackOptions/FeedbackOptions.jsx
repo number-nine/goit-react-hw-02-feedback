@@ -1,5 +1,9 @@
+import PropTypes from 'prop-types';
 import StringConverter from 'utilities/StringConverter';
-import {Container, OptionButton} from 'components/FeedbackOptions/FeedbackOptions.styled'
+import {
+  Container,
+  OptionButton,
+} from 'components/FeedbackOptions/FeedbackOptions.styled';
 
 const FeedbackOptions = ({ onLeaveFeedback, ...restProps }) => {
   return (
@@ -18,6 +22,13 @@ const FeedbackOptions = ({ onLeaveFeedback, ...restProps }) => {
       </Container>
     </>
   );
+};
+
+FeedbackOptions.propTypes = {
+  onLeaveFeedback: PropTypes.func.isRequired,
+  good: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
 };
 
 export default FeedbackOptions;

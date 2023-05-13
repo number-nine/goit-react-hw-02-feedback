@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import StringConverter from 'utilities/StringConverter';
 import Notification from 'components/Notification';
 
@@ -6,9 +7,7 @@ const Statistics = props => {
     return Object.values(props).reduce((total, current) => total + current, 0);
   };
   const calculatePositivePresentage = () => {
-    return (
-      Math.round((props.good * 100) / calculateTotal())
-    );
+    return Math.round((props.good * 100) / calculateTotal());
   };
   return calculateTotal() ? (
     <>
@@ -23,6 +22,12 @@ const Statistics = props => {
   ) : (
     <Notification message="No feedback given" />
   );
+};
+
+Statistics.propTypes = {
+  good: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
 };
 
 export default Statistics;
